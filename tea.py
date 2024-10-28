@@ -26,3 +26,26 @@ print(firtElmt(list))
 print(lastElmt(list))
 print(tail(list))
 print(head(list))
+
+def isEmpety(L):
+    return L == []
+   
+def IsOneElmt(L):
+    if isEmpety(L):
+        return False
+    else:
+        return tail(L) == [] and head(L) == []
+    
+def MAX2(x,y):
+    if x > y:
+        return x
+    else:
+        return y
+    
+def maxElmt(L):
+    if IsOneElmt(L):
+        return firtElmt(L)
+    else:
+        return MAX2(lastElmt(L),maxElmt(head(L)))
+        
+print(maxElmt([6,5,8,3,9]))
