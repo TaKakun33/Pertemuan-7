@@ -71,6 +71,23 @@ def IsOneElmt(L):
         return False
     else:
         return Tail(L) == [] and Head(L) == []
+        
+def IsMember(X,L):
+    if IsEmpety(L):
+        return False
+    else:
+        if FirstElmt(L) == X:
+            return True
+        else:
+            return IsMember(X,Tail(L))
+        
+def IsPalindrom(L):
+    if IsEmpety(L):
+        return True
+    elif IsOneElmt(L):
+        return True
+    else:
+         return FirstElmt(L) == LastElmt(L) and IsPalindrom(Head(Tail(L)))
     
 # DEFINISI DAN SPESIFIKASI FUNGSI YANG MENGOPERASIKAN LIST
 # NbElmt: List → integer
@@ -121,23 +138,6 @@ def ElmtkeN(n,L):
         return L[0]
     else:
         return ElmtkeN(n-1,Tail(L))
-        
-def IsPalindrom(L):
-    if IsEmpety(L):
-        return True
-    elif IsOneElmt(L):
-        return True
-    else:
-         return FirstElmt(L) == LastElmt(L) and IsPalindrom(Head(Tail(L)))
-        
-def IsMember(X,L):
-    if IsEmpety(L):
-        return False
-    else:
-        if FirstElmt(L) == X:
-            return True
-        else:
-            return IsMember(X,Tail(L))
         
 def Copy(L):
     if IsEmpety(L):
@@ -191,7 +191,10 @@ def NbOcc(x,L):
             return  NbOcc(x,Tail(L))
 
 def MaxNB(L):
-    return [MaxElmt(L),NbOcc(MaxElmt(L),L)]
+    if IsEmpety(L):
+        return [0,0]
+    else:
+        return [MaxElmt(L),NbOcc(MaxElmt(L),L)]
 
 def AddList(L1,L2):
     if IsEmpety(L1) and IsEmpety(L2):
@@ -216,6 +219,6 @@ print(Konkat([1,2,3],[9,8,7]))
 print(SumElmt([1,2,3,5,6]))
 print(AvgElmt([1,2,3]))
 print(MaxElmt([1,1,1,1]))
-print(NbOcc(2,[2,2,2,8,3]))
-print(MaxNB([2,8,2,8,9]))
+print(NbOcc(7,[1,2,7,7,9,9,5,5,9]))
+print(MaxNB([1,2,7,7,9,9,5,5,9]))
 print(AddList([1,2,3,10],[4,7,6]))
